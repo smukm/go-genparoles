@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"genparole/pkg/gen"
+	"github.com/smukm/go-genparoles/pkg/gen"
 	"log"
 	"strconv"
 )

@@ -5,7 +5,7 @@ import (
 	"crypto/rand"
 	"math/big"
 	"log"
-	"genparole/pkg/str"
+	"github.com/smukm/go-genparoles/pkg/str"
 )
 
 
