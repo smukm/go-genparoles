@@ -4,7 +4,8 @@ import (
 	"crypto/rand"
 	"log"
 	"math/big"
-	//"path/filepath"
+	"runtime"
+	"path/filepath"
 	"strings"
 
 	"github.com/smukm/go-genparoles/pkg/str"
@@ -13,9 +14,13 @@ import (
 
 func GenWords(iLines int) []string {
 
+	_, filename, _, ok := runtime.Caller(0)
+    if !ok {
+        panic("No caller information")
+    }
+
 	// read random words from dictionary file
-	//absPath, _ := filepath.Abs("data/eng.txt")
-	s, err := getRandomLines("eng.txt", iLines*iLines)
+	s, err := getRandomLines(filepath.Join(filepath.Dir(filename),"data/eng.txt"), iLines*iLines)
 
 
 	if err != nil {
