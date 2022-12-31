@@ -41,7 +41,7 @@ func main() {
 	iLines, err := strconv.Atoi(*lines)
 	check(err)
 
-	words := gen.GenWords(iLines)
+	words := gen.GenWords(iLines, 6)
 	for _, word := range words {
 		fmt.Println(word)
 	}

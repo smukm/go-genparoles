@@ -3,17 +3,20 @@ package gen
 import (
 	"crypto/rand"
 	"log"
+	"math"
 	"math/big"
-	"runtime"
 	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/smukm/go-genparoles/pkg/str"
 )
 
 
-func GenWords(iLines int) []string {
+func GenWords(iLines int, passLen int) []string {
 	iLines *= 2
+	passLen = passLenValidate(passLen)
+
 	_, filename, _, ok := runtime.Caller(0)
     if !ok {
         panic("No caller information")
@@ -22,15 +25,15 @@ func GenWords(iLines int) []string {
 	// read random words from dictionary file
 	s, err := getRandomLines(filepath.Join(filepath.Dir(filename),"data/eng.txt"), iLines*iLines)
 
-
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	partLen := math.Ceil(float64(passLen/2)) - 1
 	// make uppercase of random letter and put 4-letters words in slice
 	parts := make([]string, len(s))
 	for i := 0; i < len(s); i++ {
-		bz := str.GetPartOfWord(s[i], 4)
+		bz := str.GetPartOfWord(s[i], int(partLen))
 		parts[i] = str.UpperRandomLetter(strings.ToLower(bz[0]))
 	}
 
@@ -48,4 +51,14 @@ func GenWords(iLines int) []string {
 	}
 
 	return ret
+}
+
+func passLenValidate(passLen int) int {
+	if(passLen < 6) {
+		passLen = 6
+	}
+	if(passLen > 12) {
+		passLen = 12
+	}
+	return passLen
 }
