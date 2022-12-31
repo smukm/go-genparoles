@@ -12,7 +12,7 @@ import (
 func GenWords(iLines int) []string {
 
 	// read random words from dictionary file
-	s, err := GetRandomLines("../../data/eng.txt", iLines*iLines)
+	s, err := getRandomLines("../../data/eng.txt", iLines*iLines)
 	if err != nil {
 		log.Fatal(err)
 	}

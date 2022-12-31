@@ -10,7 +10,7 @@ import (
 )
 
 // возвращает количество строк из файла
-func CountLinesInFile(fileName string) (int, error) {
+func countLinesInFile(fileName string) (int, error) {
 	file, err := os.Open(fileName)
 
 	if err != nil {
@@ -36,11 +36,10 @@ func CountLinesInFile(fileName string) (int, error) {
 
 /*
 *	возвращает заданное количество случайных строк из файла словаря
-*   объявляем метод как функцию структуры application
  */
-func GetRandomLines(filename string, lines int) ([]string, error) {
+func getRandomLines(filename string, lines int) ([]string, error) {
 	// число строк в словаре
-	maxLines, err := CountLinesInFile(filename)
+	maxLines, err := countLinesInFile(filename)
 	if err != nil {
 		return nil, err
 	}
