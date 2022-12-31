@@ -13,7 +13,7 @@ import (
 
 
 func GenWords(iLines int) []string {
-
+	iLines *= 2
 	_, filename, _, ok := runtime.Caller(0)
     if !ok {
         panic("No caller information")
@@ -42,5 +42,10 @@ func GenWords(iLines int) []string {
 		words[i] = parts[r.Int64()] + ri.String()
 	}
 
-	return words
+	var ret []string
+	for i := 0; i<iLines; i=i+2 {
+		ret = append(ret, words[i] + words[i+1])
+	}
+
+	return ret
 }

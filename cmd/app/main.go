@@ -40,12 +40,9 @@ func main() {
 	//fmt.Println("Заданное число слов:", *lines)
 	iLines, err := strconv.Atoi(*lines)
 	check(err)
-	iLines *=2
 
 	words := gen.GenWords(iLines)
-
-	// output result words
-	for i := 0; i<iLines; i=i+2 {
-		fmt.Println(words[i] + words[i+1])
+	for _, word := range words {
+		fmt.Println(word)
 	}
 }
