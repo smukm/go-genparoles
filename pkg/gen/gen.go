@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"log"
 	"math/big"
+	//"path/filepath"
 	"strings"
 
 	"github.com/smukm/go-genparoles/pkg/str"
@@ -13,7 +14,8 @@ import (
 func GenWords(iLines int) []string {
 
 	// read random words from dictionary file
-	s, err := getRandomLines("./data/eng.txt", iLines*iLines)
+	//absPath, _ := filepath.Abs("data/eng.txt")
+	s, err := getRandomLines("eng.txt", iLines*iLines)
 
 
 	if err != nil {
